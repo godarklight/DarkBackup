@@ -3,6 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarkBackup", "DarkBackup\DarkBackup.csproj", "{14071077-3FDD-4E3A-B745-88AF16AFA274}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackupCommon", "BackupCommon\BackupCommon.csproj", "{C63835DC-E6E0-4AE6-AFAD-5B189EA1B8A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LunaBackup", "LunaBackup\LunaBackup.csproj", "{3149D4F9-D9E1-4961-A600-97C468D69FAC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{25CC6A1F-E9C7-4FFD-AC32-2F7D5DEA25F9}"
+	ProjectSection(SolutionItems) = preProject
+		LICENCE.md = LICENCE.md
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,5 +23,13 @@ Global
 		{14071077-3FDD-4E3A-B745-88AF16AFA274}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14071077-3FDD-4E3A-B745-88AF16AFA274}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14071077-3FDD-4E3A-B745-88AF16AFA274}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C63835DC-E6E0-4AE6-AFAD-5B189EA1B8A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C63835DC-E6E0-4AE6-AFAD-5B189EA1B8A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C63835DC-E6E0-4AE6-AFAD-5B189EA1B8A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C63835DC-E6E0-4AE6-AFAD-5B189EA1B8A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3149D4F9-D9E1-4961-A600-97C468D69FAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3149D4F9-D9E1-4961-A600-97C468D69FAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3149D4F9-D9E1-4961-A600-97C468D69FAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3149D4F9-D9E1-4961-A600-97C468D69FAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

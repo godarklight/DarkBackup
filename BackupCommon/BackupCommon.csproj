@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{14071077-3FDD-4E3A-B745-88AF16AFA274}</ProjectGuid>
+    <ProjectGuid>{C63835DC-E6E0-4AE6-AFAD-5B189EA1B8A9}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>DarkBackup</RootNamespace>
-    <AssemblyName>DarkBackup</AssemblyName>
+    <RootNamespace>BackupCommon</RootNamespace>
+    <AssemblyName>BackupCommon</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -28,20 +28,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="DMPServer">
-      <HintPath>..\DMPServer.exe</HintPath>
-      <Private>False</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DarkBackup.cs" />
+    <Compile Include="BackupCommon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BackupCommon\BackupCommon.csproj">
-      <Project>{C63835DC-E6E0-4AE6-AFAD-5B189EA1B8A9}</Project>
-      <Name>BackupCommon</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

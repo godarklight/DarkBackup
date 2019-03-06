@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using DarkMultiPlayerServer;
+using Server;
+using Server.Command;
+using Server.Context;
+using Server.Log;
+using Server.Plugin;
 namespace LunaBackup
 {
-    public class DarkBackup : DMPPlugin
+    public class LunaBackup : LmpPlugin
     {
         //Set backup interval in ticks
         private const long BACKUP_INTERVAL = 60 * TimeSpan.TicksPerSecond;
@@ -15,28 +19,36 @@ namespace LunaBackup
 
         public override void OnServerStart()
         {
-            string backupPath = Path.Combine(Server.universeDirectory, "DarkBackup");
-            string restorePath = Server.universeDirectory;
+            string backupPath = Path.Combine(ServerContext.UniverseDirectory, "LunaBackup");
+            string restorePath = ServerContext.UniverseDirectory;
             List<string> safeDeleteList = new List<string>();
             safeDeleteList.Add("Crafts");
             safeDeleteList.Add("Flags");
+            safeDeleteList.Add("Groups");
             safeDeleteList.Add("Kerbals");
             safeDeleteList.Add("Scenarios");
             safeDeleteList.Add("Screenshots");
-            safeDeleteList.Add("Players");
             safeDeleteList.Add("Vessels");
-            safeDeleteList.Add("subspace.txt");
+            safeDeleteList.Add("StartTime.txt");
+            safeDeleteList.Add("Subspace.txt");
             List<string> ignoreList = new List<string>();
-            ignoreList.Add("DarkBackup");
+            ignoreList.Add("LunaBackup");
             ignoreList.Add("Screenshots");
-            backupCommon = new BackupCommon.BackupCommon(backupPath, restorePath, DarkLog.Debug, DarkLog.Normal, DarkLog.Error, Shutdown, safeDeleteList, ignoreList);
-            CommandHandler.RegisterCommand("restore", backupCommon.RestoreCommand, "Restores the universe to the time or backup specified");
+            backupCommon = new BackupCommon.BackupCommon(backupPath, restorePath, LunaLog.Debug, LunaLog.Normal, LunaLog.Error, Shutdown, safeDeleteList, ignoreList);
+            CommandDefinition cd = new CommandDefinition("restore", RestoreCommand, "Restores the universe to the time or backup specified");
+            CommandHandler.Commands.TryAdd("restore", cd);
             started = true;
+        }
+
+        private bool RestoreCommand(string commandText)
+        {
+            backupCommon.RestoreCommand(commandText);
+            return true;
         }
 
         private void Shutdown()
         {
-            Server.ShutDown("Shutting down to restore universe");
+            Server.MainServer.Restart();
         }
 
         public override void OnServerStop()
@@ -44,7 +56,9 @@ namespace LunaBackup
             if (backupCommon.restoreID != 0)
             {
                 DateTime restoreDateTime = new DateTime(backupCommon.restoreID, DateTimeKind.Utc);
-                DarkLog.Normal("Restoring backup from: " + restoreDateTime.ToLocalTime().ToLongDateString() + " " + restoreDateTime.ToLocalTime().ToLongTimeString());
+                LunaLog.Normal("Restoring backup from: " + restoreDateTime.ToLocalTime().ToLongDateString() + " " + restoreDateTime.ToLocalTime().ToLongTimeString());
+                LunaLog.Normal("Waiting 10 seconds for the server to shut down");
+                System.Threading.Thread.Sleep(10000);
                 backupCommon.RestoreUniverse(backupCommon.restoreID);
             }
             backupCommon.restoreID = 0;
